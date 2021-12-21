@@ -1,0 +1,117 @@
+.course
+    display: flex
+    justify-content: space-between
+    width: 100%
+
+    .photo-container
+        width: 400px
+        height: 400px
+        margin-right: 40px
+
+        img
+            width: 400px
+            height: 400px
+            object-fit: cover
+            border-radius: 10px
+
+.create-course
+    font-family: 'Comforta'
+
+    p
+        margin: 0
+
+    .title
+        font-size: 36px
+        font-weight: bold
+        color: #15270D
+    
+    .text
+        font-size: 18px
+        color: #74806F
+        margin-bottom: 20px
+
+    .formik-field
+        padding: 12px
+        width: 620px
+        font-size: 24px 
+        border-radius: 10px
+        border: 1px solid #15270D
+        color: #74806F
+        outline: none
+
+    .formik-field:not(:first-child)
+        margin-top: 20px
+
+    .description-field
+        padding-bottom: 80px
+
+    .btn-container
+        text-align: left
+        
+        .form-btn
+            margin: 20px 0
+            padding: 8px 130px
+            width: 620px
+            font-size: 30px
+            color: #15270D
+            border-radius: 30px
+            background-color: white
+            box-shadow: inset 0px 0px 20px 1px #34C78E
+            text-transform: uppercase
+
+        .red-color
+            color: red
+
+    .task-title-link
+        margin-top: 20px
+        font-size: 34px
+        font-weight: bold
+
+    .task-title
+        margin-top: 8px
+        margin-bottom: 10px
+        font-size: 24px
+        color: #00b6ee
+        text-decoration: underline
+
+        &:hover
+            cursor: pointer
+
+    .solution-container
+        display: flex
+        justify-content: space-between
+        width: 650px
+
+        .download-solution
+            margin-top: 10px
+            font-size: 20px
+            color: #00b6ee
+
+            &:hover
+                cursor: pointer
+
+        .solution-mark
+            font-size: 24px
+            font-weight: bold
+
+    .set-mark
+            margin-top: 10px
+            font-size: 18px
+            font-weight: bold
+            
+            &:hover
+                cursor: pointer
+
+    .solution-send-by
+        font-size: 20px
+
+    .set-mark-field
+        margin-top: 10px
+        margin-bottom: 50px
+        padding: 4px 20px
+        width: 60px
+        border: 1px solid black
+        border-radius: 10px
+                
+    .form-error 
+            color: red
