@@ -24,6 +24,7 @@ const CoursesItem = memo(() => {
 		creator_id: 0,
 		image: '',
 		completed: false,
+		rate: 0,
 	});
 	const [isLoading, setIsLoading] = useState(false);
 	const isAuth = useSelector(getIsAuth);
@@ -108,17 +109,15 @@ const CourseInfo: React.FC<CourseInfoType> = ({ course, isCurrentCourse, handleA
 
 	const onDownloadTask = async (task_id: number) => {
 		const res = await courseAPI.getTaskFile(task_id, userId as number);
-		saveAs(`https://sulfur-tech-edu.herokuapp.com/course/task/download-task-file/${task_id}`);
+		saveAs(`https://sulfur-tech-edu.herokuapp.com/course/task/download-task-file/${task_id}?user_id=${userId}`);
 		alert('You have downloaded file');
 	};
 
 	const onDownloadTaskSolution = async (task_id: number, uploadedByUserId: number) => {
-		const res = await courseAPI.getTaskSolutionTask(task_id, uploadedByUserId, userId as number);
-		saveAs(`https://sulfur-tech-edu.herokuapp.com/course/task/download-solution-file/${task_id}`);
+		const res = await courseAPI.getTaskSolutionTask(task_id, uploadedByUserId);
+		saveAs(`https://sulfur-tech-edu.herokuapp.com/course/task/download-solution-file/${task_id}?user_id=${uploadedByUserId}`);
 		alert('You have downloaded file');
 	};
-
-	console.log(course);
 
 	return (
 		<div className='course'>
@@ -156,16 +155,16 @@ const CourseInfo: React.FC<CourseInfoType> = ({ course, isCurrentCourse, handleA
 								<div className='task-container'>
 									<p className='task-title'>Download task:</p>
 									<p className='task_title_text' onClick={() => onDownloadTask(t.task_id)}>{t.name}</p>
-									<p>Solutions:</p>
+									<p className='solution-title'>Solutions:</p>
 										{t && t.solution && t.solution.map((s) => {
 											return (
 												<div>
-													<p className='download-solution' onClick={() => onDownloadTaskSolution(t.task_id, s.user_id)}>Download current solution</p>
+													<p className='task_title_text' onClick={() => onDownloadTaskSolution(t.task_id, s.user_id)}>Download current solution</p>
 												</div>
 											);
 										})}
 
-									<input className='formik-field' type='file' onChange={(e) => fileUpload(e)} />
+									<input className='formik-field outlined' type='file' onChange={(e) => fileUpload(e)} />
 
 									<div className='btn-container'>
 										<Button

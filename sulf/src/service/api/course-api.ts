@@ -55,24 +55,18 @@ export const courseAPI = {
 	},
 
 	async getTaskFile(taskId: number, userId: number): Promise<AxiosResponse<getCreateTaskResponseType>> {
-		const res = await $api.get(`course/task/download-task-file/${taskId}`, {
+		const res = await $api.get(`course/task/download-task-file/${taskId}?user_id=${userId}`, {
 			headers: {
 				'user-id': `${userId}`
 			}
 		});
 		return res;
 	},
-	async getTaskSolutionTask(taskId: number, userId: number, currentUserId: number): Promise<AxiosResponse<getCreateTaskResponseType>> {
-		const res = await $api.get(`course/task/download-solution-file/${taskId}`, {
-			headers: {
-				'user-id': `${userId}`,
-				'current-user-id': `${currentUserId}`
-			}
-		});
+	async getTaskSolutionTask(taskId: number, userId: number): Promise<AxiosResponse<getCreateTaskResponseType>> {
+		const res = await $api.get(`course/task/download-solution-file/${taskId}?user_id=${userId}`);
 		return res;
 	},
 	async createCourseTask(course_id: number, max_grade: number, name: string, file: string | null, file_name: string): Promise<AxiosResponse<getCreateTaskResponseType>> {
-		console.log(course_id, name, max_grade, file );
 		const res = await $api.post(`course/task-create/${course_id}`,  { name, max_grade, file, file_name });
 		//@ts-ignore
 		return res;
@@ -87,4 +81,9 @@ export const courseAPI = {
 		//@ts-ignore
 		return res;
 	},
+	async createCourseRate(course_id: number, rate: number): Promise<AxiosResponse<getCreateTaskResponseType>> {
+		const res = await $api.post(`/course/rate/${course_id}`, { rate });
+		//@ts-ignore
+		return res;
+	}
 };
