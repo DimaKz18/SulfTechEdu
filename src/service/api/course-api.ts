@@ -55,19 +55,15 @@ export const courseAPI = {
 	},
 
 	async getTaskFile(taskId: number, userId: number): Promise<AxiosResponse<getCreateTaskResponseType>> {
-		const res = await $api.get(`course/task/download-task-file/${taskId}`, {
+		const res = await $api.get(`course/task/download-task-file/${taskId}?user_id=${userId}`, {
 			headers: {
 				'user-id': `${userId}`
 			}
 		});
 		return res;
 	},
-	async getTaskSolutionTask(taskId: number, userId: number, currentUserId: number): Promise<AxiosResponse<getCreateTaskResponseType>> {
-		const res = await $api.get(`course/task/download-solution-file/${taskId}`, {
-			headers: {
-				'user-id': `${userId}`,
-				'current-user-id': `${currentUserId}`
-			}
+	async getTaskSolutionTask(taskId: number, userId: number): Promise<AxiosResponse<getCreateTaskResponseType>> {
+		const res = await $api.get(`course/task/download-solution-file/${taskId}?user_id=${userId}`, {
 		});
 		return res;
 	},
